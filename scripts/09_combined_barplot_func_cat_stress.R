@@ -135,6 +135,8 @@ barplot_stress_response = wrap_plots(plot_stress_phylum_relabundance, legend_str
 
 #######################################################################
 
-#png(filename="figures/combined_barplot_func_cat_stress.png" ,units = 'in',width=9, height=6, res=1000)
-#wrap_plots(plot_fun_cat, legend_func_cat,plots_stress_phylum[[1]], legend_stress_phylum, nrow = 2, widths = c(2, 1))
-#dev.off()
+combined_barplot_func_cat_stress = wrap_plots(plot_fun_cat, legend_func_cat,plots_stress_phylum[[1]], legend_stress_phylum, nrow = 2, widths = c(2, 1))
+
+png(filename="figures/combined_barplot_func_cat_stress.png" ,units = 'in',width=9, height=6, res=1000)
+print(combined_barplot_func_cat_stress)
+dev.off()
