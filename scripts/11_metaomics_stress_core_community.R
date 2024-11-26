@@ -106,8 +106,7 @@ p <- Heatmap(res$cor,
 )
              
 
-#png(filename="figures/heatmap_stress_subsystems_core_active_genes_relabundance_spearman_spearman_wardd.png" ,units = 'in',width=9, height=6, res=1000)
-
-p
-#dev.off()
+png(filename="figures/heatmap_stress_subsystems_core_active_genes_relabundance_spearman_spearman_wardd.png" ,units = 'in',width=9, height=6, res=1000)
+print(p)
+dev.off()
 

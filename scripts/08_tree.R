@@ -57,7 +57,9 @@ tree <- rowTree(tse_active_core)
 
 # Plot the tree with taxonomic labels and color
 
-#png(filename="figures/tree.png" ,units = 'in',width=9, height=6, res=1000)
-#ggtree(tree, layout = "rectangular", ladderize = TRUE, right = FALSE) +
-#  geom_tiplab(hjust = 1,vjust = -0.5, size = 3, color = "black") 
-#dev.off()
+tree_plot =ggtree(tree, layout = "rectangular", ladderize = TRUE, right = FALSE) +
+  geom_tiplab(hjust = 1,vjust = -0.5, size = 3, color = "black") 
+
+png(filename="figures/tree.png" ,units = 'in',width=9, height=6, res=1000)
+print(tree_plot)
+dev.off()
