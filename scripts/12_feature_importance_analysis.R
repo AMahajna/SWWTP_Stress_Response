@@ -49,7 +49,7 @@ rf_model <- train(
 )
 
 # Get feature importance
-importance <- varImp(rf_model, scale = FALSE)
+importance <- varImp(rf_model, scale = TRUE)
 print(importance)
 
 importance_plot = plot(importance)
