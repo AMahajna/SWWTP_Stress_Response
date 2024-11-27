@@ -9,6 +9,7 @@ suppressMessages({
     source(file = "scripts/10_density_plots_stress_genes.R")
     source(file = "scripts/11_metaomics_stress_core_community.R")
     source(file = "scripts/12_feature_importance_analysis.R")
+    source(file = "scripts/13_sulfates_time_series.R")
   })
 })
 
