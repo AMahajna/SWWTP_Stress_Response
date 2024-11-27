@@ -67,9 +67,9 @@ res <- testExperimentCrossCorrelation(
   mae_stress,
   experiment1 = 1,
   experiment2 = 2,
-  assay.type1 = "relabundance",
+  assay.type1 = "clr",
   assay.type2 = "relabundance",
-  method = "spearman",
+  method = "pearson",
   test.signif = TRUE,
   p_adj_threshold = NULL,    # Add significance threshold
   cor_threshold = NULL,      # Add correlation threshold
@@ -80,7 +80,7 @@ res <- testExperimentCrossCorrelation(
 
 
 # Function for marking significant correlations with "X"
-add_signif <- function(j, i, x, y, width, height, fill, p_adj_threshold = 0.05, cor_threshold = 0.3) {
+add_signif <- function(j, i, x, y, width, height, fill, p_adj_threshold = 0.05, cor_threshold = 0.5) {
   # Check if the p-value is under threshold and the correlation value exceeds the threshold
   if( !is.na(res$p_adj[i, j]) & res$p_adj[i, j] < p_adj_threshold & !is.na(res$cor[i, j]) & abs(res$cor[i, j]) > cor_threshold ){
     # Print "X" if both conditions are met
@@ -99,14 +99,14 @@ p <- Heatmap(res$cor,
              column_names_rot = -45,
              column_names_gp = gpar(fontsize = 8),  # Font size for column names
              row_names_gp = gpar(fontsize = 8),     # Font size for row names
-             clustering_distance_rows = "spearman",
+             #clustering_distance_rows = "spearman",
              clustering_method_rows = "ward.D",
-             clustering_distance_columns = "spearman",
+             #clustering_distance_columns = "spearman",
              clustering_method_columns = "ward.D"
 )
              
 
-png(filename="figures/heatmap_stress_subsystems_core_active_genes_relabundance_spearman_spearman_wardd.png" ,units = 'in',width=9, height=6, res=1000)
+png(filename="figures/heatmap_stress_subsystems_relabundance_core_active_genes_clr_pearson_euclidean_wardd.png" ,units = 'in',width=9, height=6, res=1000)
 print(p)
 dev.off()
 
