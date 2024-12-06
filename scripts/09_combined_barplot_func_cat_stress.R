@@ -18,7 +18,7 @@ selected_stress <- rowData(tse_pathway)$Kingdom %in% c("Stress Response") &
   !is.na(rowData(tse_pathway)$Kingdom)
 tse_stress <- tse_pathway[selected_stress, ]
 ################################################################################
-# Core functional categories 
+# top functional categories 
 tse_func_cat <- agglomerateByRank(tse_pathway, rank ="Kingdom")
 
 top_func_cat <- getTopFeatures(tse_func_cat, top = 10, assay.type = "relabundance")
