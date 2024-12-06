@@ -11,7 +11,19 @@ tse_gene = mae[[6]]
 
 
 #######################################################################
-# Getting top taxa on a species level - active from samsa2 
+# Getting core taxa on a species level - active from samsa2 
+
+##Core community 
+core_active_species = getPrevalence(
+  tse_active, detection = 1, sort = TRUE, assay.type = "counts",
+  as.relative = FALSE) %>% head(19)
+
+cat("There are 19 core active species in the microbiome")
+print(core_active_species)
+
+core_active_species = names(core_active_species)
+
+
 tse_active_species <- agglomerateByRank(tse_active, rank ="Species")
 
 top_taxa_active <- getTopFeatures(tse_active_species, top = 19, assay.type = "relabundance")

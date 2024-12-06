@@ -42,7 +42,7 @@ plots_func_cat[[1]] <- plots_func_cat[[1]] +
   theme(
     legend.key.size = unit(0.3, 'cm'),
     legend.text = element_text(size = 8),
-    legend.title = element_text(size = 10))
+    legend.title = element_text(size = 0, , color = "white"))
 
 # Modify the legend of the second plot to be smaller
 plots_func_cat[[2]] <- plots_func_cat[[2]] +
@@ -98,7 +98,7 @@ plots_stress_phylum[[1]] <- plots_stress_phylum[[1]] +
   theme(
     legend.key.size = unit(0.3, 'cm'),
     legend.text = element_text(size = 8),
-    legend.title = element_text(size = 10))
+    legend.title = element_text(size = 0, , color = "white"))
 
 
 
