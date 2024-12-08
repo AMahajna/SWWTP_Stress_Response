@@ -56,3 +56,11 @@ combined_plot_density <- plot_grid(
 png(filename="figures/combined_abundance_density_plot_top20log10_top5_stress_genes.png" ,units = 'in',width=9, height=6, res=1000)
 print(combined_plot_density)
 dev.off()
+################################################################################
+
+getTopFeatures(tse_stress, top = 20L)
+
+
+# Subset the data frame where the column 'rowData' matches top stress related functional genes
+filtered_df <- rowData(tse_stress)[rownames(rowData(tse_stress)) %in% getTopFeatures(tse_stress), ]
+
