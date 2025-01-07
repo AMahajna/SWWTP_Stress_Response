@@ -34,7 +34,7 @@ top_20 = plotAbundanceDensity(tse_active, layout = "jitter",
 #relative abundance for the top-5 species
 #png(filename="figures/abundance_density_plot_active_5.png" ,units = 'in',width=9, height=6, res=1000)
 top_5 = plotAbundanceDensity(tse_active, layout = "density", 
-                     assay.type = "relabundance",
+                     assay.type = "relabundance", 
                      n = 5, colour_by="Season", 
                      point_alpha=1/10) 
 #dev.off()

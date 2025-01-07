@@ -42,7 +42,7 @@ col_data = DataFrame(cbind(col_data_new,process_data_normalized,(removal_efficie
 # Assign the modified colData back to the SummarizedExperiment object
 colData(tse) <- col_data
 
-tse <- transformAssay(tse, method = "relabundance")
+tse <- transformAssay(tse,assayname = "Relative Abundance", method = "relabundance")
 
 #Generate a hierarchy tree on the fly
 tse <- addHierarchyTree(tse)
@@ -154,7 +154,7 @@ tse_active <- TreeSummarizedExperiment(assays = list(counts = counts_active ),
                                        rowData = rowData_active, 
                                        
 )
-tse_active <- transformAssay(tse_active, method = "relabundance")
+tse_active <- transformAssay(tse_active, assay.name = "Relative Abundance", method = "relabundance")
 
 
 ################################################################################
@@ -275,7 +275,7 @@ tse_gene <- TreeSummarizedExperiment(assays = list(counts = counts_gene ),
                                      rowData = rowData_gene, 
                                      
 )
-tse_gene <- transformAssay(tse_gene, method = "relabundance")
+tse_gene <- transformAssay(tse_gene, assay.name = "Relative Abundance",method = "relabundance")
 
 ################################################################################
 ##pathway: reading and cleaning 
@@ -425,7 +425,7 @@ tse_pathway <- TreeSummarizedExperiment(assays = list(counts = counts_pathway ),
                                         rowData = rowData_pathway, 
                                         
 )
-tse_pathway <- transformAssay(tse_pathway, method = "relabundance")
+tse_pathway <- transformAssay(tse_pathway, assay.name = "Relative Abundance", method = "relabundance")
 
 ################################################################################
 
@@ -448,7 +448,7 @@ tse_enzymes <- TreeSummarizedExperiment(assays = list(counts = counts_enzyme),
                                         
 )
 
-tse_enzymes <- transformAssay(tse_enzymes, method = "relabundance")
+tse_enzymes <- transformAssay(tse_enzymes, assay.name = "Relative Abundance", method = "relabundance")
 
 ################################################################################
 ################################################################################

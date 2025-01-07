@@ -61,3 +61,94 @@ dev.off()
 
 
 
+
+# Print all available metrics from the results
+model_results <- rf_model$results
+print(model_results)
+
+# Extract and plot other metrics, such as MAE or R-squared (if applicable)
+mae_values <- model_results$MAE
+rsq_values <- model_results$Rsquared
+
+# Plot MAE and R-squared
+mae_plot <- ggplot(model_results, aes(x = 1:nrow(model_results), y = MAE)) +
+  geom_line() + 
+  geom_point() + 
+  labs(title = "MAE for Model Prediction",
+       x = "Fold Number (LOOCV)", 
+       y = "MAE") +
+  theme_minimal()
+
+rsq_plot <- ggplot(model_results, aes(x = 1:nrow(model_results), y = Rsquared)) +
+  geom_line() + 
+  geom_point() + 
+  labs(title = "R-squared for Model Prediction",
+       x = "Fold Number (LOOCV)", 
+       y = "R-squared") +
+  theme_minimal()
+
+# Save the plots
+png(filename="figures/mae_plot_rf_loocv_stress_response.png", units = 'in', width = 9, height = 6, res = 1000)
+print(mae_plot)
+dev.off()
+
+png(filename="figures/rsq_plot_rf_loocv_stress_response.png", units = 'in', width = 9, height = 6, res = 1000)
+print(rsq_plot)
+dev.off()
+###############################################################################
+
+# Step 1: Get the predicted values from the random forest model
+predictions <- predict(rf_model, newdata = data_combined)
+
+# Actual values
+actuals <- y
+
+# Step 2: Calculate RMSE and MAE for the prediction accuracy
+rmse <- sqrt(mean((predictions - actuals)^2))  # Root Mean Squared Error
+mae <- mean(abs(predictions - actuals))        # Mean Absolute Error
+
+# R-squared (R²) for evaluating model fit
+rsquared <- 1 - sum((predictions - actuals)^2) / sum((actuals - mean(actuals))^2)
+
+# Step 3: Create Actual vs. Predicted plot
+pred_vs_actual_plot <- ggplot(data.frame(Actual = actuals, Predicted = predictions), aes(x = Actual, y = Predicted)) +
+  geom_point(color = "blue") + 
+  geom_abline(intercept = 0, slope = 1, color = "red", linetype = "dashed") +
+  labs(
+       x = "Actual Values", 
+       y = "Predicted Values") +
+  theme_minimal()
+
+pred_vs_actual_plot_single <- ggplot(data.frame(Actual = actuals, Predicted = predictions), aes(x = Actual, y = Predicted)) +
+  geom_point(color = "blue") + 
+  geom_abline(intercept = 0, slope = 1, color = "red", linetype = "dashed") +
+  labs(title = paste("Prediction vs Actual (RMSE:", round(rmse, 2), ", MAE:", round(mae, 2), ", R²:", round(rsquared, 2), ")"),
+       x = "Actual Values", 
+       y = "Predicted Values") +
+  theme_minimal()
+
+# Save the plot as PNG
+png(filename="figures/prediction_accuracy_plot.png", units = 'in', width = 9, height = 6, res = 1000)
+print(pred_vs_actual_plot)
+dev.off()
+
+# Step 4: Create Residuals plot
+residuals <- actuals - predictions
+
+residuals_plot <- ggplot(data.frame(Residuals = residuals), aes(x = Residuals)) +
+  geom_histogram(binwidth = 0.1, fill = "skyblue", color = "black", alpha = 0.7) +
+  labs(title = "Residuals for Model Prediction",
+       x = "Residuals", 
+       y = "Frequency") +
+  theme_minimal()
+
+# Save the residuals plot
+png(filename="figures/residuals_plot.png", units = 'in', width = 9, height = 6, res = 1000)
+print(residuals_plot)
+dev.off()
+
+# Optionally, print the RMSE, MAE, and R² values
+cat("RMSE:", rmse, "\n")
+cat("MAE:", mae, "\n")
+cat("R-squared:", rsquared, "\n")
+
