@@ -53,7 +53,7 @@ sulfates_plot = ggplot(df_cleaned, aes(x = Date_updated, y = sulfate_load_mg_per
   geom_point(color = "darkorange", size = 3) +  # Points with custom color and size
   labs(
     x = "Date",
-    y = "Sulfate Load (mg/L)"
+    y = "Sulfate Concentration (mg/L)"
   ) +
   theme_minimal(base_size = 14) +  # Minimal theme with larger base font size
   theme(

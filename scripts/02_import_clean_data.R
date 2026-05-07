@@ -7,7 +7,7 @@ biom_data = biomformat::read_biom("input_data/Galaxy1783-[Kraken-biom_output_fil
 tse <- makeTreeSEFromBiom(biom_data)
 
 #removal_efficiency respective to sample to be added to column data in TSE
-removal_efficiency  = read_excel("input_data/Removal_Efficiency.xlsx")
+removal_efficiency  = read_csv("input_data/Removal_Efficiency.csv", show_col_types = FALSE)
 
 #Relevant process data to be added to column data in TSE
 process_data <- read_csv(file = "input_data/Weekly_Data.csv", show_col_types = FALSE)
@@ -34,6 +34,7 @@ col_data_new$Year <- as.numeric(col_data_new$Year)
 col_data_new = as.data.frame(col_data_new)
 
 #Preprocess process and environmental data
+colnames(process_data)[6] <- "INF_SO4_microgram_per_l"
 process_data_normalized <- decostand(process_data[ ,1:13], method = "standardize")
 #summary(process_data_normalized)
 
